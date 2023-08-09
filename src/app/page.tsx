@@ -2,10 +2,15 @@ import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
 
 const fun = async () => {
-  const prisma = new PrismaClient();
-  let newUser = await prisma.userExample.findFirst();
-  let endNewUser = JSON.stringify(newUser);
-  return endNewUser;
+  try {
+    const prisma = new PrismaClient();
+    let newUser = await prisma.userExample.findFirst();
+    let endNewUser = JSON.stringify(newUser);
+    return endNewUser;
+  } catch (err) {
+    console.log(err);
+    return "Error: cannot complete request";
+  }
 };
 
 export default async function Home() {
