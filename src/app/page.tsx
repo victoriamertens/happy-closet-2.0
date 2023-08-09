@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import Image from "next/image";
-import SignInPage from "../signIn";
-import SignUpPage from "@/signUp";
+import ClerkAuth from "./ClerkAuth/clerkButton";
 
 const fun = async () => {
   try {
@@ -16,7 +15,8 @@ const fun = async () => {
 };
 
 export default async function Home() {
-  const user = await fun();
+  // const user = await fun();
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -24,8 +24,7 @@ export default async function Home() {
           {/* LOOK HERE: {user} */}
           <code className="font-mono font-bold">src/app/page.tsx</code>
         </p>
-        <SignInPage />
-        <SignUpPage />
+        <ClerkAuth />
       </div>
     </main>
   );
