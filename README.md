@@ -1,34 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Happy Closet - Version 2.0
+
+Welcome to Happy Closet, an application designed to revolutionize how you manage and enjoy your wardrobe. Embrace the future of fashion with a virtual closet that simplifies outfit planning, logs your stylish moments, and empowers you with data-driven insights. Whether you're a fashion maven seeking to elevate your style game or a minimalist aiming to declutter your choices, Happy Closet adapts to your unique preferences. Experience the convenience of a digital wardrobe, where you can effortlessly log your outfits, explore wardrobe statistics, and curate fresh ensembles.
+
+## Key Features:
+
+Virtual Wardrobe: Digitally mirror your closet, making it easy to see and manage the items in your closet.
+Outfit Logging: Seamlessly record your outfits, creating an ever-growing style journal.
+Data-Driven Insights: Gain valuable insights into your clothing preferences and usage patterns, guiding your fashion choices.
+Advanced Data Visualizations: Version 2.0 introduces data visualizations powered by chart.js, offering deeper insights into your wardrobe habits.
+Crafted by a UX Designer: Designed by a UX Designer, Happy Closet offers an intuitive and visually pleasing experience.
+
+## Technologies
+
+This application utilizes the following languages, libraries, and software technologies:
+
+1. Next.js
+2. Typescript
+3. React
+4. Prisma.io
+5. Node.js
+6. tRPC
+7. Vitest (built on Jest)
+8. Planetscale
+9. Vercel
+10. MySQL
+11. Axiom (for logging and performance monitoring)
+12. Tailwind.css
+13. Clerk (for OAuth)
+14. AWS S3 (for image storage on the cloud)
+
+## Software Design
+
+The overall design of this application, including architecture charts, flowcharts for application navigation and task mapping, and database schema, can be found at [Happy Closet Database Design FigJam](https://www.figma.com/file/n4gdYoUlOlh5DxaHyfbuBU/Happy_Database_Design?type=whiteboard&node-id=0-1&t=BlJAjSCuwFynjgYp-0).
 
 ## Getting Started
 
-First, run the development server:
+To begin your Happy Closet journey, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Fork this repository
+2. Navigate to the root of the project, and install dependencies `npm install`
+3. Launch the application in development: `npm run dev``
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
