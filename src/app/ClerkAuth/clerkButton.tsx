@@ -1,7 +1,5 @@
 "use client";
 
-import SignInPage from "./signIn";
-import SignUpPage from "@/app/ClerkAuth/signUp";
 import {
   SignInButton,
   SignOutButton,
@@ -16,11 +14,10 @@ function ClerkAuth() {
     <div>
       {user.isSignedIn && <h3>Hello, {user.user.fullName}!</h3>}
       {user.isSignedIn && <SignOutButton />}
+
+      {!user.isSignedIn && <h3>Welcome, please sign in!</h3>}
       {!user.isSignedIn && <SignInButton />}
       {!user.isSignedIn && <SignUpButton />}
-
-      <SignInPage />
-      <SignUpPage />
     </div>
   );
 }
