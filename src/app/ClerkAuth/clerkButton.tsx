@@ -14,6 +14,7 @@ function ClerkAuth() {
 
   return (
     <div>
+      {user.isSignedIn && <h3>Hello, {user.user.fullName}!</h3>}
       {user.isSignedIn && <SignOutButton />}
       {!user.isSignedIn && <SignInButton />}
       {!user.isSignedIn && <SignUpButton />}
