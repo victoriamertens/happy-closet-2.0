@@ -9,7 +9,7 @@ function ClerkAuth() {
     <div>
       {user.sessionId && (
         <h3>
-          <CurrentUser /> You are signed in to Happy Closet!
+          <CurrentUser /> you are signed in to Happy Closet!
         </h3>
       )}
       {user.sessionId && <SignOutButton />}
