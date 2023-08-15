@@ -1,30 +1,23 @@
-"use client";
-
 import {
   SignInButton,
   SignOutButton,
   useUser,
   useAuth,
+  auth,
   SignUpButton,
 } from "@clerk/nextjs";
 
-import WithUser from "./WithUser";
-
 function ClerkAuth() {
-  let user = useAuth();
+  let user = auth();
 
   return (
     <div>
-      {user.isSignedIn && (
-        <h3>
-          <WithUser />
-        </h3>
-      )}
-      {user.isSignedIn && <SignOutButton />}
+      {user.sessionId && <h3>You are signed in to Happy Closet!</h3>}
+      {user.sessionId && <SignOutButton />}
 
-      {!user.isSignedIn && <h3>Welcome, please sign in!</h3>}
-      {!user.isSignedIn && <SignInButton />}
-      {!user.isSignedIn && <SignUpButton />}
+      {!user.sessionId && <h3>Welcome, please sign in!</h3>}
+      {!user.sessionId && <SignInButton />}
+      {!user.sessionId && <SignUpButton />}
     </div>
   );
 }
