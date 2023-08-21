@@ -15,7 +15,7 @@ model Items {
   id Int @id @default(autoincrement())
   user_id String 
   name String? 
-  category_id Int?
+  categories Categories[]
   date_added DateTime @default(now())
   color String? 
   image_url String @unique 
@@ -66,6 +66,7 @@ model Categories  {
   id Int @id @default(autoincrement())
   category_name String
   user_id String
+  items Items[]
 
-  @@unique([id,category_name])
+  @@unique([user_id,category_name])
 }
