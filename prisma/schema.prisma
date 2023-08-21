@@ -52,17 +52,26 @@ model Outfits {
   is_favorite Boolean @default(false)
   outfit_image_url String @unique 
   is_idea Boolean @default(false)
+  wearlog Outfit_WearLogs[]
 
 }
 
 //needs an enum for reaction 
 
-model Ourfit_WearLogs { 
+model Outfit_WearLogs { 
   id Int @id @default(autoincrement())
   outfit_id Int 
   user_id Int 
   date_worn DateTime @default(now())
   comment String? 
-  reaction Int
+  reaction OutfitReaction
+  outfit Outfits @relation(fields: [outfit_id], references: [id])
+  
+  @@index([outfit_id])
 }
 
+enum OutfitReaction { 
+  Dislike 
+  Like 
+  Love
+}
