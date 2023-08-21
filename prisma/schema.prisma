@@ -26,23 +26,9 @@ model Items {
   is_drycleanonly Boolean? 
   is_coldwash Boolean? 
   is_justpurchased Boolean? 
+  outfits Outfits[]
 
   @@unique([user_id, name])
-}
-
-model Categories  { 
-  id Int @id @default(autoincrement())
-  category_name String
-  user_id String
-
-  @@unique([id,category_name])
-}
-
-
-model Items_Outfits { 
-  id Int @id @default(autoincrement())
-  item_id Int 
-  outfit_id Int 
 }
 
 model Outfits { 
@@ -53,10 +39,10 @@ model Outfits {
   outfit_image_url String @unique 
   is_idea Boolean @default(false)
   wearlog Outfit_WearLogs[]
+  items Items[]
 
 }
 
-//needs an enum for reaction 
 
 model Outfit_WearLogs { 
   id Int @id @default(autoincrement())
@@ -74,4 +60,12 @@ enum OutfitReaction {
   Dislike 
   Like 
   Love
+}
+
+model Categories  { 
+  id Int @id @default(autoincrement())
+  category_name String
+  user_id String
+
+  @@unique([id,category_name])
 }
