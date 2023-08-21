@@ -10,9 +10,59 @@ datasource db {
   relationMode = "prisma"
 }
 
-model UserExample { 
+//Things to add: Category id table connections, color to enum 
+model Items { 
   id Int @id @default(autoincrement())
-  email String @unique 
+  user_id String 
   name String? 
-  username String?
+  category_id Int?
+  date_added DateTime @default(now())
+  color String? 
+  image_url String @unique 
+  initial_cost Int? 
+  is_secondhand Boolean? 
+  is_instore_purchase Boolean? 
+  is_airdry Boolean? 
+  is_drycleanonly Boolean? 
+  is_coldwash Boolean? 
+  is_justpurchased Boolean? 
+
+  @@unique([user_id, name])
 }
+
+model Categories  { 
+  id Int @id @default(autoincrement())
+  category_name String
+  user_id String
+
+  @@unique([id,category_name])
+}
+
+
+model Items_Outfits { 
+  id Int @id @default(autoincrement())
+  item_id Int 
+  outfit_id Int 
+}
+
+model Outfits { 
+  id Int @id @default( autoincrement())
+  user_id Int
+  name String? 
+  is_favorite Boolean @default(false)
+  outfit_image_url String @unique 
+  is_idea Boolean @default(false)
+
+}
+
+//needs an enum for reaction 
+
+model Ourfit_WearLogs { 
+  id Int @id @default(autoincrement())
+  outfit_id Int 
+  user_id Int 
+  date_worn DateTime @default(now())
+  comment String? 
+  reaction Int
+}
+
