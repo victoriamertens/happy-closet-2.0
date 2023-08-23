@@ -10,7 +10,8 @@
     "postinstall": "prisma generate",
     "dblist": "pscale branch list happycloset2",
     "dbview": "npx prisma studio",
-    "dbpush": "npx prisma db push"
+    "dbpush": "npx prisma db push",
+    "seed": "npx ts-node ./prisma/seedscripts.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "prettier": "3.0.1",
     "prisma": "^5.1.1",
+    "ts-node": "^10.9.1",
     "vitest": "^0.34.1"
   }
 }
