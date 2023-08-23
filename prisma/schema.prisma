@@ -1,5 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 
 generator client {
   provider = "prisma-client-js"
@@ -10,7 +9,7 @@ datasource db {
   relationMode = "prisma"
 }
 
-//Things to add: Category id table connections, color to enum 
+//Database Schema Models 
 model Items { 
   id Int @id @default(autoincrement())
   user_id String 
@@ -33,13 +32,15 @@ model Items {
 
 model Outfits { 
   id Int @id @default( autoincrement())
-  user_id Int
+  user_id String
   name String? 
   is_favorite Boolean @default(false)
   outfit_image_url String @unique 
   is_idea Boolean @default(false)
   wearlog Outfit_WearLogs[]
-  items Items[]
+  items Items[] 
+
+
 
 }
 
@@ -47,7 +48,7 @@ model Outfits {
 model Outfit_WearLogs { 
   id Int @id @default(autoincrement())
   outfit_id Int 
-  user_id Int 
+  user_id String 
   date_worn DateTime @default(now())
   comment String? 
   reaction OutfitReaction
