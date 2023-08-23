@@ -11,7 +11,7 @@
     "dblist": "pscale branch list happycloset2",
     "dbview": "npx prisma studio",
     "dbpush": "npx prisma db push",
-    "seed": "npx ts-node ./prisma/seedscripts.ts"
+    "seed": "npx ts-node ./prisma/scripts.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
