@@ -9,7 +9,7 @@ export default async function DBConnection() {
   const database = async () => {
     try {
       const prisma = new PrismaClient();
-      let newUser = await prisma.userExample.findFirst();
+      let newUser = await prisma.items.findFirst();
       let endNewUser = JSON.stringify(newUser);
       return <p className="userHERE">Data from database: {endNewUser}</p>;
     } catch (err) {
