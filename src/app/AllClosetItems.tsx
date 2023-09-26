@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import { auth } from "@clerk/nextjs";
+import prisma from "./_lib/prisma";
 
 export default async function allClosetItems() {
   let user = auth();
 
   const getAllItems = async (userId: string) => {
     try {
-      const prisma = new PrismaClient();
       let allItems = await prisma.items.findMany({
         where: { user_id: userId },
       });
