@@ -1,6 +1,6 @@
-import ClerkAuth from "./ClerkAuth/clerkButton";
+import ClerkAuth from "./_lib/ClerkAuth/clerkButton";
 import DBConnection from "./DBConnection";
-import ItemDetails from "./DBRoutes/ItemDetails";
+import ItemDetails from "./ItemDetails";
 
 export default async function Home() {
   return (
