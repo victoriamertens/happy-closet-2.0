@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { auth } from "@clerk/nextjs";
 
-export default async function ItemDetails() {
+export default async function allClosetItems() {
   let user = auth();
 
   const getAllItems = async (userId: string) => {

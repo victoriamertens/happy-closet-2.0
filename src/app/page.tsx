@@ -1,6 +1,6 @@
 import ClerkAuth from "./_lib/ClerkAuth/clerkButton";
 import DBConnection from "./DBConnection";
-import ItemDetails from "./ItemDetails";
+import AllClosetItems from "./AllClosetItems";
 
 export default async function Home() {
   return (
@@ -12,7 +12,7 @@ export default async function Home() {
             Link to GitHub Project
           </a>
         </div>
-        <ItemDetails />
+        <AllClosetItems />
         <ClerkAuth />
       </div>
     </main>
