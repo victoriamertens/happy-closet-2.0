@@ -4,8 +4,7 @@ import { auth } from "@clerk/nextjs";
 export default async function ItemDetails() {
   let user = auth();
 
-  //Function to get items from Prisma Client
-  const getItemDetails = async (userId: string) => {
+  const getAllItems = async (userId: string) => {
     try {
       const prisma = new PrismaClient();
       let allItems = await prisma.items.findMany({
@@ -29,7 +28,7 @@ export default async function ItemDetails() {
 
   if (user.sessionId) {
     let userId = user.userId;
-    const allItemDetailsJSON = await getItemDetails(userId);
+    const allItemDetailsJSON = await getAllItems(userId);
     return allItemDetailsJSON;
   } else {
     return <p>Not signed in, cannot access application data.</p>;
