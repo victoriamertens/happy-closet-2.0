@@ -58,7 +58,7 @@ export default async function ItemStatsProcessing() {
       console.log("HERE:", itemWearCount);
       return <p className="userHERE">Data from database: {itemWearCount}</p>;
     } catch (err) {
-      console.log(err);
+      console.log("Error message from Item Prisma Transaction:", err);
       return "Error: No Data in database to fetch";
     }
   };
