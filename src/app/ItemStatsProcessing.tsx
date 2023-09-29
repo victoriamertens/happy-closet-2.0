@@ -21,16 +21,33 @@ export default async function ItemStatsProcessing() {
         where: { outfit: { items: { some: { id: item?.id } } } },
       });
 
-      const costPerWear = item?.initial_cost / wears;
+      let costPerWear;
+      {
+        item.inital_cost
+          ? (costPerWear = item.initial_cost / wears)
+          : (costPerWear = 0);
+      }
 
       const itemsPairedWith = await prisma.items.findMany({
         where: {
-          outfits: { some: { items: { some: { id: { equals: item.id } } } } },
+          outfits: { some: { items: { some: { id: { equals: item?.id } } } } },
         },
       });
 
-      // const processedAmount = JSON.stringify(amount);
-      console.log("HERE:", itemsPairedWith);
+      let allItemsRanking = await prisma.items.findMany({
+        include: {
+          outfits: {
+            include: { _count: { select: { wearlog: true } } },
+          },
+        },
+      });
+
+      let itemColorPairs: any[] = [];
+      itemsPairedWith.map(
+        (itemPairedWith) => itemColorPairs?.push(itemPairedWith.color),
+      );
+
+      console.log("HERE:", JSON.stringify(allItemsRanking));
       return <p className="userHERE">Data from database: {processedItem}</p>;
     } catch (err) {
       console.log(err);
