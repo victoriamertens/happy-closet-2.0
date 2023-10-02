@@ -1,3 +1,3 @@
 export default function Outfits() {
-  return <p>Testing Outfit Page</p>;
+  return <p> Outfit Page</p>;
 }
