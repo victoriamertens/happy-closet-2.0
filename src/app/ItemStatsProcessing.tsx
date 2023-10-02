@@ -8,9 +8,9 @@ export default async function ItemStatsProcessing() {
 
   const getStatsFromPrisma = async (userId: string) => {
     try {
-      let single_item_query = { where: { user_id: userId } };
-      let item = await prisma.items.findFirst(single_item_query);
+      let item = await prisma.items.findFirst({ where: { user_id: userId } });
 
+      //***Prisma Client Transaction for Data Query
       const [
         differentOutfitCount,
         itemWearCount,
@@ -43,9 +43,10 @@ export default async function ItemStatsProcessing() {
         }),
       ]);
 
+      //*** Javascript Data Processing
       let costPerWear;
       {
-        item.inital_cost
+        item?.initial_cost
           ? (costPerWear = item.initial_cost / itemWearCount)
           : (costPerWear = 0);
       }
@@ -54,9 +55,12 @@ export default async function ItemStatsProcessing() {
       itemsPairedWith.map(
         (itemPairedWith) => itemColorPairs?.push(itemPairedWith.color),
       );
-
-      console.log("HERE:", itemWearCount);
-      return <p className="userHERE">Data from database: {itemWearCount}</p>;
+      let emptyDatabaseText = "There are no items in your closet! ";
+      return (
+        <p className="userHERE">
+          Data from database: {item ? JSON.stringify(item) : emptyDatabaseText}
+        </p>
+      );
     } catch (err) {
       console.log("Error message from Item Prisma Transaction:", err);
       return "Error: No Data in database to fetch";
