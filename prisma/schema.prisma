@@ -1,73 +1,85 @@
-
-
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
-//Database Schema Models 
-model Items { 
-  id Int @id @default(autoincrement())
-  user_id String 
-  name String? 
-  categories Categories[]
-  date_added DateTime @default(now())
-  color String? 
-  image_url String @unique 
-  initial_cost Int? 
-  is_secondhand Boolean? 
-  is_instore_purchase Boolean? 
-  is_airdry Boolean? 
-  is_drycleanonly Boolean? 
-  is_coldwash Boolean? 
-  is_justpurchased Boolean? 
-  outfits Outfits[]
+model Items {
+  id                  Int          @id @default(autoincrement())
+  user_id             String
+  name                String?
+  date_added          DateTime     @default(now())
+  color               String?
+  image_url           String       @unique
+  initial_cost        Int?
+  is_secondhand       Boolean?
+  is_instore_purchase Boolean?
+  is_airdry           Boolean?
+  is_drycleanonly     Boolean?
+  is_coldwash         Boolean?
+  is_justpurchased    Boolean?
+  categories          Categories[]
+  outfits             Outfits[]
 
   @@unique([user_id, name])
 }
 
-model Outfits { 
-  id Int @id @default( autoincrement())
-  user_id String
-  name String? 
-  is_favorite Boolean @default(false)
-  outfit_image_url String? @unique 
-  is_idea Boolean @default(false)
-  wearlog Outfit_WearLogs[]
-  items Items[] 
-
-
-
+model Outfits {
+  id               Int               @id @default(autoincrement())
+  user_id          String
+  name             String?
+  is_favorite      Boolean           @default(false)
+  outfit_image_url String?           @unique
+  is_idea          Boolean           @default(false)
+  wearlog          Outfit_WearLogs[]
+  items            Items[]
 }
 
+model Outfit_WearLogs {
+  id        Int            @id @default(autoincrement())
+  outfit_id Int
+  user_id   String
+  date_worn DateTime       @default(now())
+  comment   String?
+  reaction  OutfitReaction
+  outfit    Outfits        @relation(fields: [outfit_id], references: [id])
 
-model Outfit_WearLogs { 
-  id Int @id @default(autoincrement())
-  outfit_id Int 
-  user_id String 
-  date_worn DateTime @default(now())
-  comment String? 
-  reaction OutfitReaction
-  outfit Outfits @relation(fields: [outfit_id], references: [id])
-  
   @@index([outfit_id])
 }
 
-enum OutfitReaction { 
-  Dislike 
-  Like 
-  Love
+model Categories {
+  id            Int     @id @default(autoincrement())
+  category_name String
+  user_id       String
+  items         Items[]
+
+  @@unique([user_id, category_name])
 }
 
-model Categories  { 
-  id Int @id @default(autoincrement())
-  category_name String
-  user_id String
-  items Items[]
+model CategoriesToItems {
+  A Int
+  B Int
 
-  @@unique([user_id,category_name])
+  @@unique([A, B], map: "_CategoriesToItems_AB_unique")
+  @@index([B], map: "_CategoriesToItems_B_index")
+  @@map("_CategoriesToItems")
+}
+
+model ItemsToOutfits {
+  A Int
+  B Int
+
+  @@unique([A, B], map: "_ItemsToOutfits_AB_unique")
+  @@index([B], map: "_ItemsToOutfits_B_index")
+  @@map("_ItemsToOutfits")
+}
+
+enum OutfitReaction {
+  Dislike
+  Like
+  Love
 }
