@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { auth } from "@clerk/nextjs";
-import prisma from "./_lib/prisma";
+import prisma from "./_lib/PrismaClient";
 import { get } from "http";
 
 export default async function ItemStatsProcessing() {
