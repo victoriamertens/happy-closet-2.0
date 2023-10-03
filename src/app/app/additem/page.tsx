@@ -1,3 +1,3 @@
 export default function AddItem() {
-  return <p>Testing AddItem Page</p>;
+  return <p> AddItem Page</p>;
 }
