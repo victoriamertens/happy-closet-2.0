@@ -1,6 +1,7 @@
-import HomeButton from "../../public/home-icon-silhouette.svg";
-import AddButton from "../../public/plus-circle-svgrepo-com.svg";
-import ClosetButton from "../../public/closet-svgrepo-com.svg";
+import HomeButton from "../../../public/home-icon-silhouette.svg";
+import AddButton from "../../../public/plus-circle-svgrepo-com.svg";
+import ClosetButton from "../../../public/closet-svgrepo-com.svg";
+import RouteToButton from "./RouteToButton";
 
 import Image from "next/image";
 
@@ -8,7 +9,7 @@ export default function NavigationBar() {
   return (
     <section>
       <div id="nav-bar" className="flex flex-row justify-around">
-        <button className="m-10">
+        <RouteToButton newUrl="app/home">
           <Image
             src={HomeButton}
             className="w-10 h-10"
@@ -16,8 +17,8 @@ export default function NavigationBar() {
             width={100}
             alt="Navigate to home page"
           />
-        </button>
-        <button>
+        </RouteToButton>
+        <RouteToButton newUrl="app/additem">
           <Image
             src={AddButton}
             className="w-10 h-10"
@@ -25,8 +26,8 @@ export default function NavigationBar() {
             width={90}
             alt="Add action"
           />
-        </button>
-        <button>
+        </RouteToButton>
+        <RouteToButton newUrl="app/closet">
           <Image
             src={ClosetButton}
             className="w-10 h-10"
@@ -34,7 +35,7 @@ export default function NavigationBar() {
             width={90}
             alt="View action"
           />
-        </button>
+        </RouteToButton>
       </div>
     </section>
   );
