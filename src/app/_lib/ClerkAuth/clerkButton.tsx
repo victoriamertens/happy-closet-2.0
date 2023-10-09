@@ -6,13 +6,20 @@ function ClerkAuth() {
   let user = auth();
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col justify-around">
       {user.sessionId && (
         <h3>
           <CurrentUser /> you are signed in to Happy Closet!
         </h3>
       )}
-      {user.sessionId && <SignOutButton />}
+      {user.sessionId && (
+        <div
+          id="signout-btn-wrapper"
+          className="p-1 m-1 border-solid border-2 rounded border-black bg-blue-100 w-20"
+        >
+          <SignOutButton />
+        </div>
+      )}
       <div id="clerk-auth" className="flex flex-col items-center m-5">
         {!user.sessionId && (
           <h3 className="text-base font-bold">Welcome, please sign in!</h3>
@@ -29,7 +36,7 @@ function ClerkAuth() {
 
           {!user.sessionId && (
             <div
-              id="signin-btn-wrapper"
+              id="signup-btn-wrapper"
               className="p-1 m-1 border-solid border-2 rounded border-black bg-blue-100 "
             >
               <SignUpButton />
