@@ -18,18 +18,23 @@ function ClerkAuth() {
           <h3 className="text-base font-bold">Welcome, please sign in!</h3>
         )}
         <div className="flex ">
-          <div
-            id="signin-btn-wrapper"
-            className="p-1 m-1 border-solid border-2 rounded border-black bg-blue-400 "
-          >
-            {!user.sessionId && <SignInButton />}
-          </div>
-          <div
-            id="signin-btn-wrapper"
-            className="p-1 m-1 border-solid border-2 rounded border-black bg-blue-100 "
-          >
-            {!user.sessionId && <SignUpButton />}
-          </div>
+          {!user.sessionId && (
+            <div
+              id="signin-btn-wrapper"
+              className="p-1 m-1 border-solid border-2 rounded border-black bg-blue-400 "
+            >
+              <SignInButton />
+            </div>
+          )}
+
+          {!user.sessionId && (
+            <div
+              id="signin-btn-wrapper"
+              className="p-1 m-1 border-solid border-2 rounded border-black bg-blue-100 "
+            >
+              <SignUpButton />
+            </div>
+          )}
         </div>
       </div>
     </div>
