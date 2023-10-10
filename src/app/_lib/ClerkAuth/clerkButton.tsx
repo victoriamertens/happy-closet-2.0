@@ -6,7 +6,7 @@ function ClerkAuth() {
   let user = auth();
 
   return (
-    <div className="flex flex-col justify-around">
+    <div className="flex flex-col items-center">
       {user.sessionId && (
         <h3>
           <CurrentUser /> you are signed in to Happy Closet!
@@ -15,7 +15,7 @@ function ClerkAuth() {
       {user.sessionId && (
         <div
           id="signout-btn-wrapper"
-          className="p-1 m-1 border-solid border-2 rounded border-black bg-blue-100 w-20"
+          className="p-1 m-5 border-solid border-2 rounded border-black bg-blue-100 w-20 "
         >
           <SignOutButton />
         </div>
