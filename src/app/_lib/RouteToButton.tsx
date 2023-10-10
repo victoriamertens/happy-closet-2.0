@@ -1,16 +1,21 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { FunctionComponent, ReactNode } from "react";
 
-export default function RouteToButton(props) {
+type RouteToButtonProps = {
+  newUrl: String;
+  children: ReactNode;
+};
+
+export default function RouteToButton({
+  newUrl,
+  children,
+}: RouteToButtonProps) {
   const router = useRouter();
 
   function routeToNewPage(url: String) {
     router.push("/" + url);
   }
 
-  return (
-    <button onClick={() => routeToNewPage(props.newUrl)}>
-      {props.children}
-    </button>
-  );
+  return <button onClick={() => routeToNewPage(newUrl)}>{children}</button>;
 }
