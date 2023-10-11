@@ -1,6 +1,4 @@
-import ClerkAuth from "./_lib/ClerkAuth/clerkButton";
-import ItemStatsProcessing from "./ItemStatsProcessing";
-import AllClosetItems from "./AllClosetItems";
+import ClerkSignInButtons from "./_lib/ClerkAuth/ClerkSignInButtons";
 
 export default async function Home() {
   return (
@@ -15,9 +13,7 @@ export default async function Home() {
             Link to GitHub Project
           </a>
         </div>
-        {/* <AllClosetItems /> */}
-        <ItemStatsProcessing />
-        <ClerkAuth />
+        <ClerkSignInButtons />
       </div>
     </main>
   );

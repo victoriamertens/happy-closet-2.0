@@ -1,10 +1,12 @@
 import ClerkAuth from "../../_lib/ClerkAuth/clerkButton";
+import { SignOutButton } from "@clerk/nextjs";
 
 export default function Home() {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-4xl font-bold m-5"> Happy Closet Homepage</h1>
-      <ClerkAuth />
+      {/* <ClerkAuth /> */}
+      <SignOutButton />
     </div>
   );
 }

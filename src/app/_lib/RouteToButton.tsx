@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FunctionComponent, ReactNode } from "react";
+import { ReactNode } from "react";
 
 type RouteToButtonProps = {
   newUrl: String;
