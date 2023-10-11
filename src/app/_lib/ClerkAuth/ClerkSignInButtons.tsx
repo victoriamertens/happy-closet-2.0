@@ -1,4 +1,4 @@
-import { SignInButton, SignOutButton, auth, SignUpButton } from "@clerk/nextjs";
+import { SignInButton, auth, SignUpButton } from "@clerk/nextjs";
 
 export default function ClerkSignInButtons() {
   return (
