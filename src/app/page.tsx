@@ -41,7 +41,7 @@ export default async function Home() {
         <Image
           alt="logo of smiley face with hanger"
           src={HCLogo}
-          className="m-5 w-48 rounded-full drop-shadow-xl"
+          className="drop-shadow-intense m-5 w-48 rounded-full"
         />
         <h1 className="m-4 text-5xl font-bold">Happy Closet</h1>
 

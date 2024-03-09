@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      dropShadow: {
+        "3xl": "0 35px 35px rgba(0, 0, 0, 0.25)",
+        intense: ["10px 10px 10px rgba(0, 0, 0, 0.5)"],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
