@@ -1,15 +1,17 @@
 import ClerkSignInButtons from "./_lib/ClerkAuth/ClerkSignInButtons";
+import HCLogo from "./_lib/happy-closet-icon.jpg";
+import Image from "next/image";
 
 export default async function Home() {
   return (
-    <main id="main" className="flex h-screen items-center justify-center">
+    <main id="main" className=" flex h-screen items-center justify-center">
       <div
         id="signInCard"
-        className="min-w-96 flex flex-col items-center justify-center rounded-lg border p-4  shadow-lg "
+        className="min-w-96 m-5 flex flex-col items-center justify-center rounded-lg border p-5 shadow-lg"
       >
         <div
           id="headerLinks"
-          className="flex w-10/12 flex-row-reverse justify-between"
+          className="flex w-full flex-row-reverse justify-between"
         >
           {" "}
           <a
@@ -36,12 +38,13 @@ export default async function Home() {
             <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.508 13.941c-1.513 1.195-3.174 1.931-5.507 1.931-2.335 0-3.996-.736-5.509-1.931l-.492.493c1.127 1.72 3.2 3.566 6.001 3.566 2.8 0 4.872-1.846 5.999-3.566l-.492-.493zm.492-3.939l-.755.506s-.503-.948-1.746-.948c-1.207 0-1.745.948-1.745.948l-.754-.506c.281-.748 1.205-2.002 2.499-2.002 1.295 0 2.218 1.254 2.501 2.002zm-7 0l-.755.506s-.503-.948-1.746-.948c-1.207 0-1.745.948-1.745.948l-.754-.506c.281-.748 1.205-2.002 2.499-2.002 1.295 0 2.218 1.254 2.501 2.002z" />
           </svg>
         </div>
+        <Image
+          alt="logo of smiley face with hanger"
+          src={HCLogo}
+          className="m-5 w-48 rounded-full drop-shadow-xl"
+        />
+        <h1 className="m-4 text-5xl font-bold">Happy Closet</h1>
 
-        <div className="m-10 flex flex-col items-center justify-around">
-          <div id="header-info" className="m-10">
-            <h1 className="text-3xl font-bold">Happy Closet</h1>
-          </div>
-        </div>
         <ClerkSignInButtons />
       </div>
     </main>
