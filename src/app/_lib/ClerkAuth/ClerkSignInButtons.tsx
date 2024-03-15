@@ -5,18 +5,14 @@ export default function ClerkSignInButtons() {
   return (
     <div id="signInPageBtns" className="flex flex-col items-center">
       <div id="SignInBtn">
-        <MainBtnStyling btnType="main">
-          <SignInButton mode="redirect">
-            <button className="p-2 font-bold tracking-widest">Sign in</button>
-          </SignInButton>
-        </MainBtnStyling>
+        <SignInButton mode="redirect">
+          <MainBtnStyling btnType="main" />
+        </SignInButton>
       </div>
       <div id="signUpBtn">
-        <MainBtnStyling btnType="secondary">
-          <SignUpButton mode="redirect">
-            <button className="p-2 font-bold tracking-widest">Sign up</button>
-          </SignUpButton>
-        </MainBtnStyling>
+        <SignUpButton mode="redirect">
+          <MainBtnStyling btnType="secondary" />
+        </SignUpButton>
       </div>
       <p className="m-2 text-xs">Google Authentication</p>
     </div>
