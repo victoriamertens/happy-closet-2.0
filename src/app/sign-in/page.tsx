@@ -11,5 +11,9 @@ export default function SignIn() {
     redirect("/app/home");
   }
 
-  return <SignIn />;
+  return (
+    <div className="flex h-screen flex-col items-center justify-center">
+      <SignIn />
+    </div>
+  );
 }
