@@ -17,7 +17,7 @@ model Items {
   image_url           String       @unique
   initial_cost        Int?
   is_secondhand       Boolean?
-  is_instore_purchase Boolean?
+  is_instorepurchase Boolean?
   is_airdry           Boolean?
   is_drycleanonly     Boolean?
   is_coldwash         Boolean?
