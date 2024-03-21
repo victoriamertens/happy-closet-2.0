@@ -1,3 +1,11 @@
+"use client";
+import { addItem } from "./addItem";
+
 export default function AddItem() {
-  return <p> AddItem Page</p>;
+  return (
+    <div>
+      <p> AddItem Page</p>
+      <button onClick={() => addItem()}>Click Me!</button>
+    </div>
+  );
 }
