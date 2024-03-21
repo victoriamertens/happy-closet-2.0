@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export type itemType = {
+export type ItemType = {
   user_id: string;
   name: string;
   date_added: Date;
@@ -17,7 +17,8 @@ export type itemType = {
   is_justpurchased: boolean;
 };
 
-const createItem = async (item: itemType) => {
+const createItem = async (item: ItemType) => {
+  console.log("In backend createItem:", item);
   try {
     const newItem = await prisma.items.create({
       data: {
@@ -33,7 +34,6 @@ const createItem = async (item: itemType) => {
         is_drycleanonly: item.is_drycleanonly,
         is_coldwash: item.is_coldwash,
         is_justpurchased: item.is_justpurchased,
-        // Fill in other fields as needed
       },
     });
     console.log("New item created:", newItem);

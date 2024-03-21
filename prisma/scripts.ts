@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import { createItem } from "./queries";
-import { itemType } from "./queries";
+import { ItemType } from "./queries";
 
 async function main() {
   //first Entry of test data
@@ -44,7 +44,7 @@ async function main() {
   // });
 
   //Run the Functions for the scripts
-  const testItem: itemType = {
+  const testItem: ItemType = {
     user_id: "1",
     name: "testName",
     date_added: new Date(),
