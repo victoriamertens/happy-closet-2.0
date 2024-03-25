@@ -14,7 +14,7 @@ model Items {
   name                String?
   date_added          DateTime     @default(now())
   color               String?
-  image_url           String       @unique
+  image_url           String       
   initial_cost        Int?
   is_secondhand       Boolean?
   is_instorepurchase Boolean?
@@ -22,7 +22,7 @@ model Items {
   is_drycleanonly     Boolean?
   is_coldwash         Boolean?
   is_justpurchased    Boolean?
-  categories          Categories[]
+  categories          Categories[] 
   outfits             Outfits[]
 
   @@unique([user_id, name])
