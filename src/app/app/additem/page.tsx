@@ -2,25 +2,44 @@
 import { addItem } from "./addItem";
 import { useState } from "react";
 import { InputStyling } from "@/app/_lib/TailwindWrappers/InputStyling";
+import { useUser } from "@clerk/clerk-react";
+import { ItemType } from "../../../../prisma/queries";
 
 export default function AddItem() {
   const [itemName, setItemName] = useState("Name");
   const [itemColor, setItemColor] = useState("Color");
-  const [itemCost, setItemCost] = useState("0");
+  const [itemCost, setItemCost] = useState(0);
   const [isItemSecondhand, setIsItemSecondhand] = useState(false);
   const [isItemInStorePurchase, setIsItemInStorePurchase] = useState(false);
   const [isItemAirdry, setIsItemAirdry] = useState(false);
+  const [isItemDryCleanOnly, setIsItemDryCleanOnly] = useState(false);
+  const [isItemColdWash, setIsItemColdWash] = useState(false);
+  const [isItemJustPurchased, setIsItemJustPurchased] = useState(false);
+
+  const { user, isSignedIn } = useUser();
 
   const uploadItem = () => {
-    console.log(
-      "Uploading Item button hit:",
-      itemName,
-      itemColor,
-      itemCost,
-      isItemSecondhand,
-      isItemInStorePurchase,
-      isItemAirdry,
-    );
+    if (!isSignedIn) {
+      return;
+    }
+
+    console.log("Uploading Item button hit:", itemName);
+    let uploadItemBody: ItemType = {
+      user_id: user.id,
+      name: itemName,
+      date_added: new Date(),
+      color: itemColor,
+      image_url: "name.com",
+      initial_cost: itemCost,
+      is_secondhand: isItemSecondhand,
+      is_instorepurchase: isItemInStorePurchase,
+      is_airdry: isItemAirdry,
+      is_drycleanonly: isItemDryCleanOnly,
+      is_coldwash: isItemColdWash,
+      is_justpurchased: isItemJustPurchased,
+    };
+
+    addItem(uploadItemBody);
   };
 
   return (
@@ -39,36 +58,60 @@ export default function AddItem() {
       <input
         type="number"
         placeholder="Initial Cost"
-        onChange={(change) => setItemCost(change.target.value)}
+        onChange={(change) => setItemCost(Number.parseInt(change.target.value))}
       ></input>
       <label id="secondhand">
         <input
           type="checkbox"
           id="secondhand"
-          placeholder="Is secondhand?"
           onChange={(change) => setIsItemSecondhand(!isItemSecondhand)}
         ></input>
         Is secondhand?
       </label>
-      <label id="secondhand">
+      <label id="purchasedinstore">
         <input
           type="checkbox"
           id="instore"
-          placeholder="Is it instore purchase?"
           onChange={(change) =>
             setIsItemInStorePurchase(!isItemInStorePurchase)
           }
         ></input>
         Purchased in the store?
       </label>
-      <label id="secondhand">
+      <label id="airdry">
         <input
           type="checkbox"
-          id="secondhand"
-          placeholder="Is secondhand?"
+          id="airdry"
           onChange={(change) => setIsItemAirdry(!isItemAirdry)}
         ></input>
         Do you airdry this item?
+      </label>
+
+      <label id="dryclean">
+        <input
+          type="checkbox"
+          id="dryclean"
+          onChange={(change) => setIsItemDryCleanOnly(!isItemDryCleanOnly)}
+        ></input>
+        Do you dryclean this item?
+      </label>
+
+      <label id="justpurchased">
+        <input
+          type="checkbox"
+          id="justpurchased"
+          onChange={(change) => setIsItemJustPurchased(!isItemJustPurchased)}
+        ></input>
+        Was this item just purchased?
+      </label>
+
+      <label id="coldwash">
+        <input
+          type="checkbox"
+          id="coldwash"
+          onChange={(change) => setIsItemColdWash(!isItemColdWash)}
+        ></input>
+        Is this item washed in cold water?
       </label>
 
       <button onClick={() => uploadItem()}>Upload</button>
