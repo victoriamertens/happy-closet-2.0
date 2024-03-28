@@ -2,20 +2,19 @@ import React, { FC, PropsWithChildren } from "react";
 
 interface MainBtnStylingProps extends PropsWithChildren {
   btnType: string;
+  buttonText: string;
 }
 
 export const MainBtnStyling: FC<MainBtnStylingProps> = ({
   children,
   btnType,
+  buttonText,
 }) => {
   let dynamicStyling;
-  let signInText;
   if (btnType === "main") {
     dynamicStyling = "bg-teal-400 text-teal-900 hover:bg-teal-500";
-    signInText = "Sign In";
   } else if (btnType === "secondary") {
     dynamicStyling = "border-black hover:bg-teal-100";
-    signInText = "Sign Up";
   }
 
   return (
@@ -25,7 +24,7 @@ export const MainBtnStyling: FC<MainBtnStylingProps> = ({
         dynamicStyling
       }
     >
-      <p className="p-2 font-bold tracking-widest">{signInText}</p>
+      <p className="p-2 font-bold tracking-widest">{buttonText}</p>
     </button>
   );
 };
