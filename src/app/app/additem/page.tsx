@@ -1,9 +1,10 @@
 "use client";
-import { addItem } from "./addItem";
 import { useState } from "react";
 import { InputStyling } from "@/app/_lib/TailwindWrappers/InputStyling";
 import { useUser } from "@clerk/clerk-react";
 import { ItemType } from "../../../../prisma/queries";
+import { ToggleStyling } from "@/app/_lib/TailwindWrappers/ToggleStyling";
+import { MainBtnStyling } from "@/app/_lib/TailwindWrappers/MainBtnStyling";
 
 export default function AddItem() {
   const [itemName, setItemName] = useState("Name");
@@ -23,7 +24,6 @@ export default function AddItem() {
       return;
     }
 
-    console.log("Uploading Item button hit:", itemName);
     let uploadItemBody: ItemType = {
       user_id: user.id,
       name: itemName,
@@ -39,82 +39,90 @@ export default function AddItem() {
       is_justpurchased: isItemJustPurchased,
     };
 
-    addItem(uploadItemBody);
+    try {
+      console.log("Firing");
+
+      // let res = addItem(uploadItemBody);
+      fetch("/api/item", {
+        method: "POST",
+        body: JSON.stringify(uploadItemBody),
+      });
+    } catch (err) {
+      console.log("Error with upload:", err);
+    }
   };
 
   return (
-    <div>
-      <p> AddItem Page</p>
-      <input
-        type="text"
+    <div
+      id="additem-inputs"
+      className="flex flex-col items-center justify-center"
+    >
+      <div id="upperbox-photo" className="bg-blue h-60"></div>
+      <InputStyling
         placeholder="Item Name"
-        onChange={(change) => setItemName(change.target.value)}
-      ></input>
-      <input
         type="text"
+        onChange={(change) => setItemName(change.target.value)}
+      />
+      <InputStyling
         placeholder="Color"
+        type="text"
         onChange={(change) => setItemColor(change.target.value)}
-      ></input>
-      <input
-        type="number"
+      />
+      <InputStyling
         placeholder="Initial Cost"
+        type="text"
         onChange={(change) => setItemCost(Number.parseInt(change.target.value))}
-      ></input>
-      <label id="secondhand">
-        <input
-          type="checkbox"
-          id="secondhand"
-          onChange={(change) => setIsItemSecondhand(!isItemSecondhand)}
-        ></input>
-        Is secondhand?
-      </label>
-      <label id="purchasedinstore">
-        <input
-          type="checkbox"
-          id="instore"
-          onChange={(change) =>
-            setIsItemInStorePurchase(!isItemInStorePurchase)
-          }
-        ></input>
-        Purchased in the store?
-      </label>
-      <label id="airdry">
-        <input
-          type="checkbox"
-          id="airdry"
-          onChange={(change) => setIsItemAirdry(!isItemAirdry)}
-        ></input>
-        Do you airdry this item?
-      </label>
+      />
+      <div id="toggle-inputs" className="grid grid-cols-2 justify-center gap-4">
+        <ToggleStyling
+          label="Is Secondhand?"
+          onChange={(change) => {
+            setIsItemSecondhand(!isItemSecondhand);
+            console.log("Secondhand onChange trigger activated");
+          }}
+        />
+        <ToggleStyling
+          label="Purchased in store?"
+          onChange={(change) => {
+            setIsItemInStorePurchase(!isItemInStorePurchase);
+            console.log("InStore onChange trigger activated");
+          }}
+        />
+        <ToggleStyling
+          label="Do you airdry this item?"
+          onChange={(change) => {
+            setIsItemAirdry(!isItemAirdry);
+            console.log("Airdry onChange trigger activated");
+          }}
+        />
 
-      <label id="dryclean">
-        <input
-          type="checkbox"
-          id="dryclean"
-          onChange={(change) => setIsItemDryCleanOnly(!isItemDryCleanOnly)}
-        ></input>
-        Do you dryclean this item?
-      </label>
+        <ToggleStyling
+          label="Is this item Dry Clean Only?"
+          onChange={(change) => {
+            setIsItemDryCleanOnly(!isItemDryCleanOnly);
+            console.log("Dryclean onChange trigger activated");
+          }}
+        />
 
-      <label id="justpurchased">
-        <input
-          type="checkbox"
-          id="justpurchased"
-          onChange={(change) => setIsItemJustPurchased(!isItemJustPurchased)}
-        ></input>
-        Was this item just purchased?
-      </label>
+        <ToggleStyling
+          label="Was this item just purchased?"
+          onChange={(change) => {
+            setIsItemJustPurchased(!isItemJustPurchased);
+            console.log("Justpurchased onChange trigger activated");
+          }}
+        />
 
-      <label id="coldwash">
-        <input
-          type="checkbox"
-          id="coldwash"
-          onChange={(change) => setIsItemColdWash(!isItemColdWash)}
-        ></input>
-        Is this item washed in cold water?
-      </label>
-
-      <button onClick={() => uploadItem()}>Upload</button>
+        <ToggleStyling
+          label="Do you wash this item in the cold water cycle?"
+          onChange={(change) => {
+            setIsItemColdWash(!isItemColdWash);
+            console.log("Coldwash onChange trigger activated");
+          }}
+        />
+      </div>
+      <button className="m-10" onClick={() => uploadItem()}>
+        <MainBtnStyling btnType="main" buttonText="Upload" />
+      </button>
     </div>
   );
 }
