@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { auth } from "@clerk/nextjs";
-import prisma from "./_lib/prisma";
+import prisma from "./_lib/PrismaClient";
 import { get } from "http";
 
 export default async function ItemStatsProcessing() {
@@ -57,8 +57,9 @@ export default async function ItemStatsProcessing() {
       );
       let emptyDatabaseText = "There are no items in your closet! ";
       return (
-        <p className="userHERE">
-          Data from database: {item ? JSON.stringify(item) : emptyDatabaseText}
+        <p className="w-52  m-5">
+          Connected to the Database:{" "}
+          {item ? JSON.stringify(item.name) : emptyDatabaseText}
         </p>
       );
     } catch (err) {
