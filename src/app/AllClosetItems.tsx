@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { auth } from "@clerk/nextjs";
-import prisma from "./_lib/prisma";
+import prisma from "./_lib/PrismaClient";
 
 export default async function allClosetItems() {
   let user = auth();
