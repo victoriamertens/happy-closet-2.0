@@ -1,16 +1,16 @@
-import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs";
+// import { redirect } from "next/navigation";
+// import { auth } from "@clerk/nextjs";
 
-const ProtectedRoute = ({ children }) => {
-  let { sessionId } = auth();
+// const ProtectedRoute = ({ children }) => {
+//   let { sessionId } = auth();
 
-  let userNotLoggedIn = sessionId === null;
+//   let userNotLoggedIn = sessionId === null;
 
-  if (userNotLoggedIn) {
-    redirect("/");
-  }
+//   if (userNotLoggedIn) {
+//     redirect("/");
+//   }
 
-  return children;
-};
+//   return children;
+// };
 
-export default ProtectedRoute;
+// export default ProtectedRoute;

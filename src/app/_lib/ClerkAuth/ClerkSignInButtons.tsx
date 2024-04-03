@@ -5,12 +5,12 @@ export default function ClerkSignInButtons() {
   return (
     <div id="signInPageBtns" className="flex flex-col items-center">
       <div id="SignInBtn">
-        <SignInButton mode="redirect">
+        <SignInButton mode="redirect" afterSignInUrl="/app/home">
           <MainBtnStyling btnType="main" buttonText="Sign In" />
         </SignInButton>
       </div>
       <div id="signUpBtn">
-        <SignUpButton mode="redirect">
+        <SignUpButton mode="redirect" afterSignUpUrl="/app/home">
           <MainBtnStyling btnType="secondary" buttonText="Sign Up" />
         </SignUpButton>
       </div>
