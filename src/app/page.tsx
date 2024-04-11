@@ -1,9 +1,17 @@
+import { auth } from "@clerk/nextjs";
 import ClerkSignInButtons from "./_lib/ClerkAuth/ClerkSignInButtons";
 import HCLogo from "./_lib/happy-closet-icon.jpg";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
+  let { sessionId } = auth();
+
+  if (sessionId) {
+    redirect("/app/home");
+  }
+
   return (
     <div id="signInCard">
       <div
@@ -42,7 +50,7 @@ export default async function Home() {
         <Image
           alt="logo of smiley face with hanger"
           src={HCLogo}
-          className="drop-shadow-intense m-5 w-48 rounded-full"
+          className="m-5 w-48 rounded-full drop-shadow-intense"
         />
         <h1 className="m-4 text-5xl font-bold">Happy Closet</h1>
 
