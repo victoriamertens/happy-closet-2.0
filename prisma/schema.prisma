@@ -25,6 +25,7 @@ model Items {
   initial_cost        Int?
   is_secondhand       Boolean?
   is_justpurchased    Boolean?
+  purchased_date      DateTime?
   categories          Categories[] 
   outfits             Outfits[]
 
