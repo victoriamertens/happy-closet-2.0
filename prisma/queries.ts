@@ -4,17 +4,19 @@ const prisma = new PrismaClient();
 
 export type ItemType = {
   user_id: string;
-  name: string;
+  item_name: string;
   date_added: Date;
-  color: string;
+  primary_color: string;
+  secondary_color: String;
+  tertiary_color: String;
+  patterned_item: Boolean;
+  pattern_type: String;
+  description_word: String;
   image_url: string;
   initial_cost: number;
   is_secondhand: boolean;
-  is_instorepurchase: boolean;
-  is_airdry: boolean;
-  is_drycleanonly: boolean;
-  is_coldwash: boolean;
   is_justpurchased: boolean;
+  purchased_date: Date;
 };
 
 const createItem = async (item: ItemType) => {
