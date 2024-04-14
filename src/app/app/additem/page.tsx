@@ -8,14 +8,17 @@ import { MainBtnStyling } from "@/app/_lib/TailwindWrappers/MainBtnStyling";
 
 export default function AddItem() {
   const [itemName, setItemName] = useState("Name");
-  const [itemColor, setItemColor] = useState("Color");
+  const [primaryColor, setPrimaryColor] = useState("");
+  const [secondaryColor, setSecondaryColor] = useState("");
+  const [tertiaryColor, setTertiaryColor] = useState("");
   const [itemCost, setItemCost] = useState(0);
   const [isItemSecondhand, setIsItemSecondhand] = useState(false);
-  const [isItemInStorePurchase, setIsItemInStorePurchase] = useState(false);
-  const [isItemAirdry, setIsItemAirdry] = useState(false);
-  const [isItemDryCleanOnly, setIsItemDryCleanOnly] = useState(false);
-  const [isItemColdWash, setIsItemColdWash] = useState(false);
   const [isItemJustPurchased, setIsItemJustPurchased] = useState(false);
+  const [patternedItem, setPatternedItem] = useState(false);
+  const [patternType, setPatternType] = useState("PatternType");
+  const [descriptionWord, setDecsriptionWord] = useState(
+    "Default Description Word",
+  );
 
   const { user, isSignedIn } = useUser();
 
@@ -26,23 +29,24 @@ export default function AddItem() {
 
     let uploadItemBody: ItemType = {
       user_id: user.id,
-      name: itemName,
+      item_name: itemName,
       date_added: new Date(),
-      color: itemColor,
+      primary_color: primaryColor,
+      secondary_color: secondaryColor,
+      tertiary_color: tertiaryColor,
       image_url: "name.com",
       initial_cost: itemCost,
       is_secondhand: isItemSecondhand,
-      is_instorepurchase: isItemInStorePurchase,
-      is_airdry: isItemAirdry,
-      is_drycleanonly: isItemDryCleanOnly,
-      is_coldwash: isItemColdWash,
       is_justpurchased: isItemJustPurchased,
+      purchased_date: new Date(),
+      patterned_item: patternedItem,
+      pattern_type: patternType,
+      description_word: descriptionWord,
     };
 
     try {
       console.log("Firing");
 
-      // let res = addItem(uploadItemBody);
       fetch("/api/item", {
         method: "POST",
         body: JSON.stringify(uploadItemBody),
@@ -66,13 +70,34 @@ export default function AddItem() {
       <InputStyling
         placeholder="Color"
         type="text"
-        onChange={(change) => setItemColor(change.target.value)}
+        onChange={(change) => setPrimaryColor(change.target.value)}
       />
       <InputStyling
         placeholder="Initial Cost"
         type="text"
         onChange={(change) => setItemCost(Number.parseInt(change.target.value))}
       />
+      <InputStyling
+        placeholder="Secondary Color"
+        type="text"
+        onChange={(change) => setSecondaryColor(change.target.value)}
+      />
+      <InputStyling
+        placeholder="Tertiary Color"
+        type="text"
+        onChange={(change) => setPatternType(change.target.value)}
+      />
+      <InputStyling
+        placeholder="Pattern Type"
+        type="text"
+        onChange={(change) => setTertiaryColor(change.target.value)}
+      />
+      <InputStyling
+        placeholder="Description Word"
+        type="text"
+        onChange={(change) => setDecsriptionWord(change.target.value)}
+      />
+
       <div id="toggle-inputs" className="grid grid-cols-2 justify-center gap-4">
         <ToggleStyling
           label="Is Secondhand?"
@@ -82,41 +107,17 @@ export default function AddItem() {
           }}
         />
         <ToggleStyling
-          label="Purchased in store?"
+          label="Is Item Patterned?"
           onChange={(change) => {
-            setIsItemInStorePurchase(!isItemInStorePurchase);
-            console.log("InStore onChange trigger activated");
+            setPatternedItem(!patternedItem);
+            console.log("Secondhand onChange trigger activated");
           }}
         />
-        <ToggleStyling
-          label="Do you airdry this item?"
-          onChange={(change) => {
-            setIsItemAirdry(!isItemAirdry);
-            console.log("Airdry onChange trigger activated");
-          }}
-        />
-
-        <ToggleStyling
-          label="Is this item Dry Clean Only?"
-          onChange={(change) => {
-            setIsItemDryCleanOnly(!isItemDryCleanOnly);
-            console.log("Dryclean onChange trigger activated");
-          }}
-        />
-
         <ToggleStyling
           label="Was this item just purchased?"
           onChange={(change) => {
             setIsItemJustPurchased(!isItemJustPurchased);
             console.log("Justpurchased onChange trigger activated");
-          }}
-        />
-
-        <ToggleStyling
-          label="Do you wash this item in the cold water cycle?"
-          onChange={(change) => {
-            setIsItemColdWash(!isItemColdWash);
-            console.log("Coldwash onChange trigger activated");
           }}
         />
       </div>
