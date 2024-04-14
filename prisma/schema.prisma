@@ -22,7 +22,7 @@ model Items {
   fabric_type         FabricType?
   description_word    String?
   image_url           String?       
-  initial_cost        Int?
+  initial_cost        Decimal? @db.Decimal(10, 2)
   is_secondhand       Boolean?
   is_justpurchased    Boolean?
   purchased_date      DateTime?

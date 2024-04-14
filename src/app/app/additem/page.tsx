@@ -11,7 +11,7 @@ export default function AddItem() {
   const [primaryColor, setPrimaryColor] = useState("");
   const [secondaryColor, setSecondaryColor] = useState("");
   const [tertiaryColor, setTertiaryColor] = useState("");
-  const [itemCost, setItemCost] = useState(0);
+  const [itemCost, setItemCost] = useState(0.0);
   const [isItemSecondhand, setIsItemSecondhand] = useState(false);
   const [isItemJustPurchased, setIsItemJustPurchased] = useState(false);
   const [patternedItem, setPatternedItem] = useState(false);
@@ -45,8 +45,6 @@ export default function AddItem() {
     };
 
     try {
-      console.log("Firing");
-
       fetch("/api/item", {
         method: "POST",
         body: JSON.stringify(uploadItemBody),
@@ -74,8 +72,11 @@ export default function AddItem() {
       />
       <InputStyling
         placeholder="Initial Cost"
-        type="text"
-        onChange={(change) => setItemCost(Number.parseInt(change.target.value))}
+        type="number"
+        step="0.01"
+        onChange={(change) => {
+          setItemCost(Number.parseFloat(change.target.value));
+        }}
       />
       <InputStyling
         placeholder="Secondary Color"
