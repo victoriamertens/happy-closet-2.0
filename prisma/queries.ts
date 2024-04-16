@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
@@ -43,9 +44,30 @@ const createItem = async (item: ItemType) => {
     console.log("New item created:", newItem);
   } catch (error) {
     console.error("Error creating item:", error);
-  } finally {
-    await prisma.$disconnect();
   }
 };
 
-export { createItem };
+const fetchAllItems = async (userId: string | null) => {
+  console.log("In backend fetchAllItems:", userId);
+  if (userId) {
+    try {
+      const allItems = await prisma.items.findMany({
+        where: { user_id: userId },
+      });
+      return NextResponse.json({ all_items: allItems }, { status: 200 });
+    } catch (error) {
+      console.error("Error fetching allitems:", error);
+      return NextResponse.json(
+        { error: "Internal Server Error with allItems fetch: " + error },
+        { status: 500 },
+      );
+    }
+  } else {
+    return NextResponse.json(
+      { error: "No userId, not signed in" },
+      { status: 500 },
+    );
+  }
+};
+
+export { createItem, fetchAllItems };
