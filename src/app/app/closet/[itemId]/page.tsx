@@ -8,6 +8,10 @@ export default async function Item({ params }: { params: { itemId: number } }) {
     const singleItemDetails = await prisma.items.findFirst({
       where: { user_id: user.id, id: Number(params.itemId) },
     });
-    return <p> Item: {JSON.stringify(singleItemDetails)}</p>;
+    return (
+      <div>
+        <p> Item: {JSON.stringify(singleItemDetails)}</p>
+      </div>
+    );
   }
 }
