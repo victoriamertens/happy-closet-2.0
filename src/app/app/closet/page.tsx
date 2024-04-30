@@ -11,16 +11,13 @@ export default async function Closet() {
       const allItems = await prisma.items.findMany({
         where: { user_id: user.id },
       });
-      console.log("LOOK HERE all:", Array.isArray(allItems), allItems.length);
-      if (allItems.length > 0) {
-        return (
-          <div>
-            {allItems.map((item) => (
-              <ItemComponent key={item.id} item={item} />
-            ))}
-          </div>
-        );
-      }
+      return (
+        <div>
+          {allItems.map((item) => (
+            <ItemComponent key={item.id} item={item} />
+          ))}
+        </div>
+      );
     } catch (error) {
       console.error("Error fetching allitems:", error);
       return <p>No Items in Database</p>;
