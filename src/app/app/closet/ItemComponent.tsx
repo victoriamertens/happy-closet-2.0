@@ -1,4 +1,5 @@
 import type { Items } from "@prisma/client";
+import Link from "next/link";
 
 type itemComponentProps = {
   key: Number;
@@ -6,10 +7,11 @@ type itemComponentProps = {
 };
 
 export default function ItemComponent(item: itemComponentProps) {
-  console.log("In itemComponent:", item);
+  let itemDetailsPath = "/app/closet/" + item.item.id;
+
   return (
-    <div className="w-96 overflow-auto border">
+    <Link href={itemDetailsPath} className="w-96 overflow-auto border">
       <p>{item.item.item_name}</p>
-    </div>
+    </Link>
   );
 }
