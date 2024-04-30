@@ -12,7 +12,7 @@ export default async function Closet() {
         where: { user_id: user.id },
       });
       return (
-        <div>
+        <div className="-mb-20 h-screen scroll-pb-24 overflow-auto pb-24">
           {allItems.map((item) => (
             <ItemComponent key={item.id} item={item} />
           ))}
