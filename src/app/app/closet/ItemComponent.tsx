@@ -1,8 +1,8 @@
-import { ItemType } from "../../../../prisma/queries";
+import type { Items } from "@prisma/client";
 
 type itemComponentProps = {
   key: Number;
-  item: ItemType[];
+  item: Items;
 };
 
 export default function ItemComponent(item: itemComponentProps) {
