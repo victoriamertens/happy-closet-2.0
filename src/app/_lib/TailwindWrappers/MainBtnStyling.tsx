@@ -18,13 +18,13 @@ export const MainBtnStyling: FC<MainBtnStylingProps> = ({
   }
 
   return (
-    <button
+    <div
       className={
         " m-2 flex w-72 flex-row justify-center rounded-3xl border-2 shadow-2xl " +
         dynamicStyling
       }
     >
       <p className="p-2 font-bold tracking-widest">{buttonText}</p>
-    </button>
+    </div>
   );
 };
