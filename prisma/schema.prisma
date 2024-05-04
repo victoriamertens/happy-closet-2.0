@@ -11,6 +11,7 @@ datasource db {
 model Items {
   id                  Int          @id @default(autoincrement())
   user_id             String
+  in_closet           Boolean     @default(true)
   item_name           String?
   date_added          DateTime     @default(now())
   primary_color       String?
