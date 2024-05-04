@@ -28,16 +28,14 @@ export default function NavigationBar() {
           />
         </RouteToButton>
         <RouteToButton newUrl="app/closet">
-          <div className="group relative flex">
-            <Image
-              src={ClosetButton}
-              className="h-10 w-10"
-              height={90}
-              width={90}
-              alt="View action"
-              data-tooltip-target="closetbtn"
-            />
-          </div>
+          <Image
+            src={ClosetButton}
+            className="h-10 w-10"
+            height={90}
+            width={90}
+            alt="View action"
+            data-tooltip-target="closetbtn"
+          />
         </RouteToButton>
       </div>
     </section>
