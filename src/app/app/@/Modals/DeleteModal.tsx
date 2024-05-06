@@ -16,14 +16,18 @@ export default function DeleteModal(props: { itemId: number }) {
         method: "PUT",
         body: JSON.stringify(props.itemId),
       });
-      console.log("Response good:", uploadRes);
+
       if (uploadRes.status === 200) {
-        router.push(href: pathname);
+        console.log("Status 200");
+        router.push("/app/closet");
       } else {
-        alert("Not 200 status");
+        alert("Not 200 status" + uploadRes.status);
+        console.log("Response:", uploadRes);
       }
     } catch (err) {
       console.log("Error with upload:", err);
+      alert("Error with item removal, try again later");
+      router.push(pathname);
     }
   }
 
